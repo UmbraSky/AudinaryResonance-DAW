@@ -148,11 +148,11 @@ public partial class FrmMain : Form
     {
         if (trackManager.SelectedTrack is not null)
         {
-            /*
+            
             FrmEditHighPass frm = new();
             frm.SetSound(trackManager.SelectedTrack);
             frm.ShowDialog();
-            */
+            
         }
     }
     private void menuGenRecord_Click(object sender, EventArgs e)

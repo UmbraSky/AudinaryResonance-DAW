@@ -18,7 +18,6 @@ public class Track : IDisposable {
   private float timeScale;
   private int sampleRate;
   private float[] samples;
-  private float pitch;
   private int bits;
   private int channels;
   private AudioFileReader fileReader;
@@ -31,6 +30,7 @@ public class Track : IDisposable {
   public bool IsDisabled { get; private set; }
   public Panel PanDrawSamples { get; private set; }
   public float Volume { get; private set; }
+  public float Pitch { get; private set; }
   private string tempFilePath => Path.Combine(Path.GetTempPath(), "MediocreSoundDesigner", "temp.wav");
   public PlaybackState State => outputDevice?.PlaybackState ?? PlaybackState.Stopped;
 
@@ -49,7 +49,7 @@ public class Track : IDisposable {
     this.offset = 0;
     this.timeScale = 1.0f;
     this.Volume = 1.0f;
-    this.pitch = 1.0f;
+    this.Pitch = 0.0f;
     this.bits = fileReader.WaveFormat.BitsPerSample;
     this.channels = fileReader.WaveFormat.Channels;
     this.sampleRate = fileReader.WaveFormat.SampleRate;
@@ -63,7 +63,7 @@ public class Track : IDisposable {
     this.offset = 0;
     this.timeScale = 1.0f;
     this.Volume = 1.0f;
-    this.pitch = 1.0f;
+    this.Pitch = 0.0f;
     this.bits = 32;
     this.channels = 1;
     this.sampleRate = 0;
@@ -165,6 +165,7 @@ public class Track : IDisposable {
         pse.Process(sampleSpan);
 
         samples = sampleSpan.ToArray();
+        Pitch = semitones;
     }
 
     // play

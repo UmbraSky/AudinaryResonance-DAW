@@ -1,4 +1,5 @@
 ﻿using NAudio.Wave;
+using NAudio.Effects;
 
 namespace MediocreSoundDesigner;
 
@@ -153,8 +154,21 @@ public class Track : IDisposable {
     samples = newSamples;
   }
 
-  // play
-  public void Play() {
+    public void PitchShift(float semitones) {
+        Span<float> sampleSpan = CloneSamples();
+
+        PitchShiftEffect pse = new PitchShiftEffect();
+        pse.PitchSemitones = semitones;
+
+        WaveFormat wave = new WaveFormat(sampleRate, channels);
+        pse.Configure(wave);
+        pse.Process(sampleSpan);
+
+        samples = sampleSpan.ToArray();
+    }
+
+    // play
+    public void Play() {
     outputDevice?.Dispose();
     fileReader?.Dispose();
     SaveToTempFile();

@@ -154,11 +154,13 @@ public class Track : IDisposable {
     samples = newSamples;
   }
 
-    public void PitchShift(float semitones) {
+    public void PitchShift(float semitones, int fftsize, long oversampling) {
         Span<float> sampleSpan = CloneSamples();
 
         PitchShiftEffect pse = new PitchShiftEffect();
         pse.PitchSemitones = semitones;
+        pse.FftSize = fftsize;
+        pse.Oversampling = oversampling;
 
         WaveFormat wave = new WaveFormat(sampleRate, channels);
         pse.Configure(wave);

@@ -11,11 +11,15 @@ public partial class FrmEditPitch : FrmEditMaster
     {
         base.Init();
         nudSemitones.Value = (decimal)(track.Pitch);
+        dropFFT.SelectedValue = "4096";
+        dropFFT.Text = "4096";
+        dropOversampling.SelectedValue = "4";
+        dropOversampling.Text = "4";
     }
 
     protected override void Apply()
     {
-        track.PitchShift((float)nudSemitones.Value);
+        track.PitchShift((float)nudSemitones.Value, int.Parse(dropFFT.Text), long.Parse(dropOversampling.Text));
     }
 
     private void nudSemitones_ValueChanged(object sender, EventArgs e)

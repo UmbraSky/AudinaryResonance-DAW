@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             panTracks = new Panel();
             lblPlayhead = new Label();
             lblDebug = new Label();
@@ -43,6 +44,8 @@
             menuEditReverse = new ToolStripMenuItem();
             menuEditVolume = new ToolStripMenuItem();
             menuEditEliminateSilence = new ToolStripMenuItem();
+            menuEditFilter = new ToolStripMenuItem();
+            menuEditLowPass = new ToolStripMenuItem();
             menuGen = new ToolStripMenuItem();
             menuGenRecord = new ToolStripMenuItem();
             menuGenNoise = new ToolStripMenuItem();
@@ -132,6 +135,7 @@
             // menuEdit
             // 
             menuEdit.DropDownItems.AddRange(new ToolStripItem[] { menuEditFlip, menuEditReverse, menuEditVolume, menuEditEliminateSilence, menuEditFilter });
+            menuEdit.DropDownItems.AddRange(new ToolStripItem[] { menuEditFlip, menuEditReverse, menuEditVolume, menuEditEliminateSilence });
             menuEdit.Name = "menuEdit";
             menuEdit.Size = new Size(39, 20);
             menuEdit.Text = "E&dit";
@@ -140,6 +144,7 @@
             // 
             menuEditFlip.Name = "menuEditFlip";
             menuEditFlip.Size = new Size(180, 22);
+            menuEditFlip.Size = new Size(172, 22);
             menuEditFlip.Text = "Flip";
             menuEditFlip.Click += menuEditFlip_Click;
             // 
@@ -147,6 +152,7 @@
             // 
             menuEditReverse.Name = "menuEditReverse";
             menuEditReverse.Size = new Size(180, 22);
+            menuEditReverse.Size = new Size(172, 22);
             menuEditReverse.Text = "Reverse";
             menuEditReverse.Click += menuEditReverse_Click;
             // 
@@ -154,6 +160,7 @@
             // 
             menuEditVolume.Name = "menuEditVolume";
             menuEditVolume.Size = new Size(180, 22);
+            menuEditVolume.Size = new Size(172, 22);
             menuEditVolume.Text = "Alter Volume...";
             menuEditVolume.Click += menuEditVolume_Click;
             // 
@@ -161,6 +168,24 @@
             // 
             menuEditEliminateSilence.Name = "menuEditEliminateSilence";
             menuEditEliminateSilence.Size = new Size(180, 22);
+            menuEditEliminateSilence.Text = "Eliminate Silence...";
+            menuEditEliminateSilence.Click += menuEditEliminateSilence_Click;
+            // 
+            // menuEditFilter
+            // 
+            menuEditFilter.DropDownItems.AddRange(new ToolStripItem[] { menuEditLowPass });
+            menuEditFilter.Name = "menuEditFilter";
+            menuEditFilter.Size = new Size(180, 22);
+            menuEditFilter.Text = "Filter";
+            // 
+            // menuEditLowPass
+            // 
+            menuEditLowPass.Name = "menuEditLowPass";
+            menuEditLowPass.Size = new Size(180, 22);
+            menuEditLowPass.Text = "Low Pass...";
+            menuEditLowPass.Click += menuEditLowPass_Click;
+            // 
+            menuEditEliminateSilence.Size = new Size(172, 22);
             menuEditEliminateSilence.Text = "Eliminate Silence...";
             menuEditEliminateSilence.Click += menuEditEliminateSilence_Click;
             // 
@@ -255,6 +280,7 @@
             Controls.Add(lblDebug);
             Controls.Add(panTracks);
             Controls.Add(menu);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             MainMenuStrip = menu;
             Name = "FrmMain";
@@ -295,5 +321,6 @@
     private ToolStripMenuItem menuFileSettings;
         private ToolStripMenuItem menuEditFilter;
         private ToolStripMenuItem menuEditHighPass;
+        private ToolStripMenuItem menuEditLowPass;
     }
 }

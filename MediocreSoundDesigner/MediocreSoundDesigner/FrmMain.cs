@@ -153,6 +153,13 @@ public partial class FrmMain : Form
             frm.SetSound(trackManager.SelectedTrack);
             frm.ShowDialog();
             
+    private void menuEditLowPass_Click(object sender, EventArgs e)
+    {
+        if (trackManager.SelectedTrack is not null)
+        {
+            FrmEditLowPass frm = new();
+            frm.SetSound(trackManager.SelectedTrack);
+            frm.ShowDialog();
         }
     }
     private void menuGenRecord_Click(object sender, EventArgs e)

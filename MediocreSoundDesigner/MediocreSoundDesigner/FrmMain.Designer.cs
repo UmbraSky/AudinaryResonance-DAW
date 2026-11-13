@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             panTracks = new Panel();
             lblPlayhead = new Label();
             lblDebug = new Label();
@@ -43,6 +44,8 @@
             menuEditReverse = new ToolStripMenuItem();
             menuEditVolume = new ToolStripMenuItem();
             menuEditEliminateSilence = new ToolStripMenuItem();
+            menuEditFilter = new ToolStripMenuItem();
+            menuEditLowPass = new ToolStripMenuItem();
             menuGen = new ToolStripMenuItem();
             menuGenRecord = new ToolStripMenuItem();
             menuGenNoise = new ToolStripMenuItem();
@@ -52,6 +55,8 @@
             sfdSaveFile = new SaveFileDialog();
             trkDrawTimescale = new TrackBar();
             colorDialog = new ColorDialog();
+            menuEditFilter = new ToolStripMenuItem();
+            menuEditHighPass = new ToolStripMenuItem();
             menuEditPitch = new ToolStripMenuItem();
             panTracks.SuspendLayout();
             menu.SuspendLayout();
@@ -234,6 +239,26 @@
             trkDrawTimescale.Value = 500;
             trkDrawTimescale.Scroll += trkDrawTimescale_Scroll;
             // 
+            // menuEditFilter
+            // 
+            menuEditFilter.DropDownItems.AddRange(new ToolStripItem[] { menuEditHighPass });
+            menuEditFilter.Name = "menuEditFilter";
+            menuEditFilter.Size = new Size(180, 22);
+            menuEditFilter.Text = "Filter";
+            // 
+            // menuEditHighPass
+            // 
+            menuEditHighPass.Name = "menuEditHighPass";
+            menuEditHighPass.Size = new Size(180, 22);
+            menuEditHighPass.Text = "High Pass...";
+            menuEditHighPass.Click += menuEditHighPass_Click;
+            // 
+            // FrmMain
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Black;
+            ClientSize = new Size(1604, 783);
             // menuEditPitch
             // 
             menuEditPitch.Name = "menuEditPitch";
@@ -252,6 +277,7 @@
             Controls.Add(lblDebug);
             Controls.Add(panTracks);
             Controls.Add(menu);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             MainMenuStrip = menu;
             Margin = new Padding(3, 4, 3, 4);
@@ -291,6 +317,9 @@
     private Label lblPlayhead;
     private ToolStripMenuItem menuGenRecord;
     private ToolStripMenuItem menuFileSettings;
+        private ToolStripMenuItem menuEditFilter;
+        private ToolStripMenuItem menuEditHighPass;
+        private ToolStripMenuItem menuEditLowPass;
         private ToolStripMenuItem menuEditPitch;
     }
 }

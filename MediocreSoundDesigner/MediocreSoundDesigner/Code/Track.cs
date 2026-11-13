@@ -48,8 +48,8 @@ public class Track : IDisposable {
       Array.Resize(ref samples, samplesRead);
     }
 
-    this.file = file;
-    this.duration = fileReader.TotalTime;
+    this.file = "";
+    this.duration = TimeSpan.Zero;
     this.offset = 0;
     this.timeScale = 1.0f;
     this.Volume = 1.0f;
@@ -62,19 +62,6 @@ public class Track : IDisposable {
     public Track(float[] samples)
       : this(samples, WaveFormat.CreateIeeeFloatWaveFormat(44100, 1)) {
     }
-
-    this.file = "";
-    this.duration = TimeSpan.Zero;
-    this.offset = 0;
-    this.timeScale = 1.0f;
-    this.Volume = 1.0f;
-    this.Pitch = 0.0f;
-    this.bits = 32;
-    this.channels = 1;
-    this.sampleRate = 0;
-    IsDisabled = false;
-  }
-  public void LinkPanels(Panel panDrawSamples, Panel panContainer) {
     // Constructor Overload
     public Track(float[] samples, WaveFormat waveFormat)
     {
@@ -86,7 +73,7 @@ public class Track : IDisposable {
         this.offset = 0;
         this.timeScale = 1.0f;
         this.Volume = 1.0f;
-        this.pitch = 1.0f;
+        this.Pitch = 1.0f;
         this.bits = waveFormat.BitsPerSample;
         this.channels = waveFormat.Channels;
         this.sampleRate = waveFormat.SampleRate;

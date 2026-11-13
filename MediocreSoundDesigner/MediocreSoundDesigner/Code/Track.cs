@@ -1,5 +1,4 @@
 ﻿using NAudio.Wave;
-using NAudio.Effects;
 using NAudio.Wave.SampleProviders;
 
 namespace MediocreSoundDesigner;
@@ -19,6 +18,7 @@ public class Track : IDisposable {
   private float timeScale;
   private int sampleRate;
   private float[] samples;
+  private float pitch;
   private int bits;
   private int channels;
   private WaveFormat waveFormat;
@@ -33,7 +33,6 @@ public class Track : IDisposable {
   public WaveFormat Format => waveFormat;
   public Panel PanDrawSamples { get; private set; }
   public float Volume { get; private set; }
-  public float Pitch { get; private set; }
   private string tempFilePath => Path.Combine(Path.GetTempPath(), "MediocreSoundDesigner", "temp.wav");
   public PlaybackState State => outputDevice?.PlaybackState ?? PlaybackState.Stopped;
 
@@ -53,7 +52,7 @@ public class Track : IDisposable {
     this.offset = 0;
     this.timeScale = 1.0f;
     this.Volume = 1.0f;
-    this.Pitch = 0.0f;
+    this.pitch = 1.0f;
     this.bits = waveFormat.BitsPerSample;
     this.channels = waveFormat.Channels;
     this.sampleRate = waveFormat.SampleRate;
@@ -63,18 +62,6 @@ public class Track : IDisposable {
       : this(samples, WaveFormat.CreateIeeeFloatWaveFormat(44100, 1)) {
     }
 
-    this.file = "";
-    this.duration = TimeSpan.Zero;
-    this.offset = 0;
-    this.timeScale = 1.0f;
-    this.Volume = 1.0f;
-    this.Pitch = 0.0f;
-    this.bits = 32;
-    this.channels = 1;
-    this.sampleRate = 0;
-    IsDisabled = false;
-  }
-  public void LinkPanels(Panel panDrawSamples, Panel panContainer) {
     // Constructor Overload
     public Track(float[] samples, WaveFormat waveFormat)
     {
@@ -177,24 +164,8 @@ public class Track : IDisposable {
     samples = newSamples;
   }
 
-    public void PitchShift(float semitones, int fftsize, long oversampling) {
-        Span<float> sampleSpan = CloneSamples();
-
-        PitchShiftEffect pse = new PitchShiftEffect();
-        pse.PitchSemitones = semitones;
-        pse.FftSize = fftsize;
-        pse.Oversampling = oversampling;
-
-        WaveFormat wave = new WaveFormat(sampleRate, channels);
-        pse.Configure(wave);
-        pse.Process(sampleSpan);
-
-        samples = sampleSpan.ToArray();
-        Pitch = semitones;
-    }
-
-    // play
-    public void Play() {
+  // play
+  public void Play() {
     outputDevice?.Dispose();
     fileReader?.Dispose();
     SaveToTempFile();

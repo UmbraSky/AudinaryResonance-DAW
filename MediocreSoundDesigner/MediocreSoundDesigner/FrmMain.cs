@@ -113,6 +113,20 @@ public partial class FrmMain : Form
             frm.ShowDialog();
         }
     }
+    private void menuEditHighPass_Click(object sender, EventArgs e)
+    {
+        if (trackManager.SelectedTrack is not null)
+        {
+            
+            FrmEditHighPass frm = new();
+            frm.SetSound(trackManager.SelectedTrack);
+            frm.ShowDialog();
+            
+    private void menuEditLowPass_Click(object sender, EventArgs e)
+    {
+        if (trackManager.SelectedTrack is not null)
+        {
+            FrmEditLowPass frm = new();
 
     private void menuEditPitch_Click(object sender, EventArgs e)
     {

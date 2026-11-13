@@ -44,6 +44,8 @@
             menuEditReverse = new ToolStripMenuItem();
             menuEditVolume = new ToolStripMenuItem();
             menuEditEliminateSilence = new ToolStripMenuItem();
+            menuEditFilter = new ToolStripMenuItem();
+            menuEditLowPass = new ToolStripMenuItem();
             menuGen = new ToolStripMenuItem();
             menuGenRecord = new ToolStripMenuItem();
             menuGenNoise = new ToolStripMenuItem();
@@ -130,6 +132,7 @@
             // 
             // menuEdit
             // 
+            menuEdit.DropDownItems.AddRange(new ToolStripItem[] { menuEditFlip, menuEditReverse, menuEditVolume, menuEditEliminateSilence, menuEditFilter });
             menuEdit.DropDownItems.AddRange(new ToolStripItem[] { menuEditFlip, menuEditReverse, menuEditVolume, menuEditEliminateSilence });
             menuEdit.Name = "menuEdit";
             menuEdit.Size = new Size(39, 20);
@@ -138,6 +141,7 @@
             // menuEditFlip
             // 
             menuEditFlip.Name = "menuEditFlip";
+            menuEditFlip.Size = new Size(180, 22);
             menuEditFlip.Size = new Size(172, 22);
             menuEditFlip.Text = "Flip";
             menuEditFlip.Click += menuEditFlip_Click;
@@ -145,6 +149,7 @@
             // menuEditReverse
             // 
             menuEditReverse.Name = "menuEditReverse";
+            menuEditReverse.Size = new Size(180, 22);
             menuEditReverse.Size = new Size(172, 22);
             menuEditReverse.Text = "Reverse";
             menuEditReverse.Click += menuEditReverse_Click;
@@ -152,6 +157,7 @@
             // menuEditVolume
             // 
             menuEditVolume.Name = "menuEditVolume";
+            menuEditVolume.Size = new Size(180, 22);
             menuEditVolume.Size = new Size(172, 22);
             menuEditVolume.Text = "Alter Volume...";
             menuEditVolume.Click += menuEditVolume_Click;
@@ -159,6 +165,24 @@
             // menuEditEliminateSilence
             // 
             menuEditEliminateSilence.Name = "menuEditEliminateSilence";
+            menuEditEliminateSilence.Size = new Size(180, 22);
+            menuEditEliminateSilence.Text = "Eliminate Silence...";
+            menuEditEliminateSilence.Click += menuEditEliminateSilence_Click;
+            // 
+            // menuEditFilter
+            // 
+            menuEditFilter.DropDownItems.AddRange(new ToolStripItem[] { menuEditLowPass });
+            menuEditFilter.Name = "menuEditFilter";
+            menuEditFilter.Size = new Size(180, 22);
+            menuEditFilter.Text = "Filter";
+            // 
+            // menuEditLowPass
+            // 
+            menuEditLowPass.Name = "menuEditLowPass";
+            menuEditLowPass.Size = new Size(180, 22);
+            menuEditLowPass.Text = "Low Pass...";
+            menuEditLowPass.Click += menuEditLowPass_Click;
+            // 
             menuEditEliminateSilence.Size = new Size(172, 22);
             menuEditEliminateSilence.Text = "Eliminate Silence...";
             menuEditEliminateSilence.Click += menuEditEliminateSilence_Click;
@@ -279,5 +303,7 @@
     private Label lblPlayhead;
     private ToolStripMenuItem menuGenRecord;
     private ToolStripMenuItem menuFileSettings;
-  }
+        private ToolStripMenuItem menuEditFilter;
+        private ToolStripMenuItem menuEditLowPass;
+    }
 }

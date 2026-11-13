@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="NAudio" Version="3.3.0" />
+    <PackageReference Include="NAudio.SoundFile" Version="3.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,4 +44,10 @@
     </None>
   </ItemGroup>
 
+   <ItemGroup>
+    <None Update="dllfiles\*.dll">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+</ItemGroup>
 </Project>

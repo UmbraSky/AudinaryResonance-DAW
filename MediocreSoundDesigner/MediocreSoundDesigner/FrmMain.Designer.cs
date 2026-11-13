@@ -55,6 +55,8 @@
             sfdSaveFile = new SaveFileDialog();
             trkDrawTimescale = new TrackBar();
             colorDialog = new ColorDialog();
+            menuEditFilter = new ToolStripMenuItem();
+            menuEditHighPass = new ToolStripMenuItem();
             panTracks.SuspendLayout();
             menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trkDrawTimescale).BeginInit();
@@ -253,6 +255,20 @@
             trkDrawTimescale.Value = 500;
             trkDrawTimescale.Scroll += trkDrawTimescale_Scroll;
             // 
+            // menuEditFilter
+            // 
+            menuEditFilter.DropDownItems.AddRange(new ToolStripItem[] { menuEditHighPass });
+            menuEditFilter.Name = "menuEditFilter";
+            menuEditFilter.Size = new Size(180, 22);
+            menuEditFilter.Text = "Filter";
+            // 
+            // menuEditHighPass
+            // 
+            menuEditHighPass.Name = "menuEditHighPass";
+            menuEditHighPass.Size = new Size(180, 22);
+            menuEditHighPass.Text = "High Pass...";
+            menuEditHighPass.Click += menuEditHighPass_Click;
+            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -304,6 +320,7 @@
     private ToolStripMenuItem menuGenRecord;
     private ToolStripMenuItem menuFileSettings;
         private ToolStripMenuItem menuEditFilter;
+        private ToolStripMenuItem menuEditHighPass;
         private ToolStripMenuItem menuEditLowPass;
     }
 }

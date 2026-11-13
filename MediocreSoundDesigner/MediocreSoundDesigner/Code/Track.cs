@@ -154,6 +154,27 @@ public class Track : IDisposable {
     samples = newSamples;
   }
 
+  public void HighPass(float freq)
+  {
+      float[] samplesArray = CloneSamples();
+      Span<float> samplesSpan = samplesArray;
+      // we will assume the filter is meant to effect the whole track for now
+      EqualizerBand eqb = new EqualizerBand();
+      eqb.Frequency = freq;
+      eqb.Type = EqualizerBandType.HighPass;
+      Equalizer eq = new(eqb);
+      eq.Update();
+      WaveFormat waveFormat = new WaveFormat(sampleRate, channels);
+      eq.Configure(waveFormat);
+
+      eq.Process(samplesSpan);
+
+      samplesArray = samplesSpan.ToArray();
+
+      samples = samplesArray;
+  }
+    // play
+    public void Play() {
   public void LowPass(float freq) {
         float[] samplesArray = CloneSamples();
         Span<float> samplesSpan = samplesArray;
